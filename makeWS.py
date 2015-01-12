@@ -306,96 +306,25 @@ class width_datacardClass:
 
 
         ### -------------------------- OTHER BACKGROUND SHAPES ---------------------------------- ##
-        #
-        ## qqZZ contribution
-        name = "CMS_qqzzbkg_a0_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a0 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a0",115.3,0.,200.)
-        name = "CMS_qqzzbkg_a1_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a1 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a1",21.96,0.,200.)
-        name = "CMS_qqzzbkg_a2_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a2 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a2",122.8,0.,200.)
-        name = "CMS_qqzzbkg_a3_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a3 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a3",0.03479,0.,1.)
-        name = "CMS_qqzzbkg_a4_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a4 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a4",185.5,0.,200.)
-        name = "CMS_qqzzbkg_a5_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a5 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a5",12.67,0.,200.)
-        name = "CMS_qqzzbkg_a6_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a6 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a6",34.81,0.,100.)
-        name = "CMS_qqzzbkg_a7_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a7 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a7",0.1393,0.,1.)
-        name = "CMS_qqzzbkg_a8_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a8 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a8",66.,0.,200.)
-        name = "CMS_qqzzbkg_a9_{0:.0f}_{1:.0f}".format( self.channel,self.sqrts )
-        CMS_qqzzbkg_a9 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a9",0.07191,0.,1.)
-        name = "CMS_qqzzbkg_a10_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts )
-        CMS_qqzzbkg_a10 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a10",94.11,0.,200.)
-        name = "CMS_qqzzbkg_a11_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts )
-        CMS_qqzzbkg_a11 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a11",-5.111,-100.,100.)
-        name = "CMS_qqzzbkg_a12_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts )
-        CMS_qqzzbkg_a12 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a12",4834,0.,10000.)
-        name = "CMS_qqzzbkg_a13_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts )
-        CMS_qqzzbkg_a13 = ROOT.RooRealVar(name,"CMS_qqzzbkg_a13",0.2543,0.,1.)
-        
-        CMS_qqzzbkg_a0.setVal(109.534  )
-        CMS_qqzzbkg_a1.setVal(11.8814  )
-        CMS_qqzzbkg_a2.setVal(128.934  )
-        CMS_qqzzbkg_a3.setVal(0.0411119)
-        CMS_qqzzbkg_a4.setVal(185.521  )
-        CMS_qqzzbkg_a5.setVal(10.0879  )
-        CMS_qqzzbkg_a6.setVal(33.5574  )
-        CMS_qqzzbkg_a7.setVal(0.0870464)
-        CMS_qqzzbkg_a8.setVal(54.2038  )
-        CMS_qqzzbkg_a9.setVal(0.0965525)
-        CMS_qqzzbkg_a10.setVal(85.3157 )
-        CMS_qqzzbkg_a11.setVal(-13.3787)
-        CMS_qqzzbkg_a12.setVal(601.074 )
-        CMS_qqzzbkg_a13.setVal(0.322357)
-        
-        CMS_qqzzbkg_a0.setConstant(True)
-        CMS_qqzzbkg_a1.setConstant(True)
-        CMS_qqzzbkg_a2.setConstant(True)
-        CMS_qqzzbkg_a3.setConstant(True)
-        CMS_qqzzbkg_a4.setConstant(True)
-        CMS_qqzzbkg_a5.setConstant(True)
-        CMS_qqzzbkg_a6.setConstant(True)
-        CMS_qqzzbkg_a7.setConstant(True)
-        CMS_qqzzbkg_a8.setConstant(True)
-        CMS_qqzzbkg_a9.setConstant(True)
-        CMS_qqzzbkg_a10.setConstant(True)
-        CMS_qqzzbkg_a11.setConstant(True)
-        CMS_qqzzbkg_a12.setConstant(True)
-        CMS_qqzzbkg_a13.setConstant(True)
-
-        #TO BE CLEANED UP ->this part should be moved in inputs
-        CMS_qqzzbkg_p0=ROOT.RooRealVar("CMS_qqzzbkg_p0","CMS_qqzzbkg_p0",1.04012)
-        CMS_qqzzbkg_p1=ROOT.RooRealVar("CMS_qqzzbkg_p1","CMS_qqzzbkg_p1",-0.000125088)
-        CMS_qqzzbkg_p2=ROOT.RooRealVar("CMS_qqzzbkg_p2","CMS_qqzzbkg_p2",2.39404e-07)
-        CMS_qqzzbkg_p3=ROOT.RooRealVar("CMS_qqzzbkg_p3","CMS_qqzzbkg_p3",1.027)
-        CMS_qqzzbkg_p4=ROOT.RooRealVar("CMS_qqzzbkg_p4","CMS_qqzzbkg_p4",1-0.034)
-        CMS_qqzzbkg_p0.setConstant(True)
-        CMS_qqzzbkg_p1.setConstant(True)
-        CMS_qqzzbkg_p2.setConstant(True)
-        CMS_qqzzbkg_p3.setConstant(True)
-        CMS_qqzzbkg_p4.setConstant(True)        
-        
-        bkg_qqzz_mass_temp = ROOT.RooqqZZPdf_v2("bkg_qqzz_mass_temp","bkg_qqzz_mass_temp",CMS_zz4l_widthMass,CMS_qqzzbkg_a0,CMS_qqzzbkg_a1,CMS_qqzzbkg_a2,CMS_qqzzbkg_a3,CMS_qqzzbkg_a4,CMS_qqzzbkg_a5,CMS_qqzzbkg_a6,CMS_qqzzbkg_a7,CMS_qqzzbkg_a8,CMS_qqzzbkg_a9,CMS_qqzzbkg_a10,CMS_qqzzbkg_a11,CMS_qqzzbkg_a12,CMS_qqzzbkg_a13)
-
+     
         qqZZ_Scale_Syst = ROOT.RooRealVar("CMS_QCDscale_VV","CMS_QCDscale_VV",0.0,-3,3)
         bkg_qqzz_syst_shape = ROOT.RooGenericPdf("bkg_qqzz_syst_shape","TMath::Max(1+@0*(@1-1+@2*@4+@3*@4*@4),0.)",ROOT.RooArgList(qqZZ_Scale_Syst,CMS_qqzzbkg_p0,CMS_qqzzbkg_p1,CMS_qqzzbkg_p2,CMS_zz4l_widthMass))
         bkg_qqzz_mass = ROOT.RooProdPdf("bkg_qqzz_mass","bkg_qqzz_mass",bkg_qqzz_mass_temp,bkg_qqzz_syst_shape)
 
-        asympowname = "kappalow_qqZZ_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
-        kappalow_qqzz = ROOT.RooRealVar(asympowname,asympowname,CMS_qqzzbkg_p3.getVal())
-        asympowname = "kappahigh_qqZZ_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
-        kappahigh_qqzz = ROOT.RooRealVar(asympowname,asympowname,CMS_qqzzbkg_p4.getVal())
-        bkg_qqzz_norm = AsymPow("qqzz_norm","qqzz_norm",kappalow_qqzz,kappahigh_qqzz,qqZZ_Scale_Syst)
+        #asympowname = "kappalow_qqZZ_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
+        #kappalow_qqzz = ROOT.RooRealVar(asympowname,asympowname,CMS_qqzzbkg_p3.getVal())
+        #asympowname = "kappahigh_qqZZ_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
+        #kappahigh_qqzz = ROOT.RooRealVar(asympowname,asympowname,CMS_qqzzbkg_p4.getVal())
+        #bkg_qqzz_norm = AsymPow("qqzz_norm","qqzz_norm",kappalow_qqzz,kappahigh_qqzz,qqZZ_Scale_Syst)
 
         TemplateName = "qqzz_TempDataHist_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
         qqzz_TempDataHist = ROOT.RooDataHist(TemplateName,TemplateName,ROOT.RooArgList(CMS_zz4l_widthMass,CMS_zz4l_widthKD),Bkg_T)
         PdfName = "qqzz_TemplatePdf_{0:.0f}_{1:.0f}".format(self.channel,self.sqrts)
-        qqzz_TemplatePdf = ROOT.RooHistPdf(PdfName,PdfName,ROOT.RooArgSet(CMS_zz4l_widthMass,CMS_zz4l_widthKD),qqzz_TempDataHist)
-        bkg_qqzz = ROOT.RooProdPdf("bkg_qqzz","bkg_qqzz",ROOT.RooArgSet(bkg_qqzz_mass),ROOT.RooFit.Conditional(ROOT.RooArgSet(qqzz_TemplatePdf),ROOT.RooArgSet(CMS_zz4l_widthKD)))
+        qqzz_TemplatePdf = ROOT.RooHistPdf("bkg_qqzz","bkg_qqzz",ROOT.RooArgSet(CMS_zz4l_widthMass,CMS_zz4l_widthKD),qqzz_TempDataHist)
+        #bkg_qqzz = ROOT.RooProdPdf("bkg_qqzz","bkg_qqzz",ROOT.RooArgSet(bkg_qqzz_mass),ROOT.RooFit.Conditional(ROOT.RooArgSet(qqzz_TemplatePdf),ROOT.RooArgSet(CMS_zz4l_widthKD)))
+
+        #bkg_qqzz = ROOT.RooHistFunc("bkg_qqzz","bkg_qqzz",ROOT.RooArgSet(CMS_zz4l_widthMass,CMS_zz4l_widthKD),bkg_qqzz_mass_TempDataHist_Up)
+
 
          ## ------------------- LUMI -------------------- ##
         
@@ -580,9 +509,6 @@ class width_datacardClass:
 if __name__ == "__main__":
     dc =width_datacardClass()
     dc.loadIncludes()
-    #myReader2e2mu = inputReader("SM_inputs_8TeV/inputs_2e2mu.txt")
-    #myReader2e2mu.readInputs()
-    #theInputs2e2mu = myReader2e2mu.getInputs()
     cmd = 'mkdir -p provaX/'
     status, output = commands.getstatusoutput(cmd)    
     dc.makeCardsWorkspaces(220,"provaX")

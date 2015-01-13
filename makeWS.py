@@ -153,6 +153,11 @@ class width_datacardClass:
         bkgRate_qqzz_Shape = bkgRate_qqzz*self.lumi
         #bkgRate_zjets_Shape = bkgRate_zjets*self.lumi
 
+        print rate_signal_ggzz_Shape
+        print rate_bkg_ggzz_Shape
+        print rate_interf_ggzz_Shape
+        print totalRate_ggzz
+
         
         if Sig_T_4.Integral()<0 : #negative interference, turn it positive, the sign will be taken into account later when building the pdf
             print "negative interference"
@@ -428,15 +433,10 @@ class width_datacardClass:
                 h421.SetBinContent(ix,h421.GetBinContent(ix)+h2.GetBinContent(ix)+h1.GetBinContent(ix))
             h421.SetName("ggH_sbi")
             h421.SetTitle("ggH_sbi")#1.0231, 15.1039, -1.8171, 14.3099
-            print rate_bkg_ggzz_Shape
-            print rate_signal_ggzz_Shape
-            print totalRate_ggzz
-            print h1.Integral(),"  ", h1.Integral("width"), "  ",h1.Integral("width")*self.lumi
-            print h2.Integral(),"  ", h2.Integral("width"), "  ",h2.Integral("width")*self.lumi
-            print h421.Integral(),"  ", h421.Integral("width"), "  ",h421.Integral("width")*self.lumi
+
             h1.Scale(rate_bkg_ggzz_Shape/h1.Integral())
             h2.Scale(rate_signal_ggzz_Shape/h2.Integral())
-            h421.Scale(totalRate_ggzz/h421.Integral()*self.lumi)
+            h421.Scale(totalRate_ggzz_Shape/h421.Integral())
             hBkg_T.Scale(76.8200/hBkg_T.Integral())
             h1.Write()
             h2.Write()

@@ -31,7 +31,7 @@ class width_datacardClass:
         self.ID_4e  = 2
         self.ID_2e2mu = 3    
         self.isFSR = True
-        
+    
     def loadIncludes(self):
         
         ROOT.gSystem.AddIncludePath("-I$ROOFITSYS/include/")
@@ -52,7 +52,8 @@ class width_datacardClass:
         self.outputDir = theOutputDir
 
         self.templRange =220
-        
+        self.pdfAnalysis = False
+    
         ## ---------------- SET PLOTTING STYLE ---------------- ## 
         ROOT.gStyle.SetPalette(1)
         ROOT.gStyle.SetPadLeftMargin(0.16)        
@@ -85,7 +86,7 @@ class width_datacardClass:
         x.setVal(1)
         x.setBins(100)
 
-        mu_name = "CMS_zz4l_mu"
+        mu_name = "R"
 
         mu = ROOT.RooRealVar(mu_name,mu_name,0.93,0.001,10)
         mu.setBins(100)
@@ -111,7 +112,7 @@ class width_datacardClass:
         #templates
         templateSigName = "/afs/cern.ch/work/u/usarica/public/CombineTemplates/02_04_2014/{0:.0f}TeV/{1}/{2}/HtoZZ4l_MCFM_125p6_ModifiedSmoothTemplatesForCombine__GenLevelVBF_wResolution_D_Gamma_gg_r10_Nominal.root".format(self.sqrts,self.appendNameAlt,self.templRange)
         templateBkgName = templateSigName
-        newtemplateSigName = "templates2e2mu.root"
+        #newtemplateSigName = "templates2e2mu.root"
         templateSigNameUp = "/afs/cern.ch/work/u/usarica/public/CombineTemplates/02_04_2014/{0:.0f}TeV/{1}/{2}/HtoZZ4l_MCFM_125p6_ModifiedSmoothTemplatesForCombine__GenLevelVBF_wResolution_D_Gamma_gg_r10_SysUp_ggPDF.root".format(self.sqrts,self.appendNameAlt,self.templRange)
         templateSigNameDown = "/afs/cern.ch/work/u/usarica/public/CombineTemplates/02_04_2014/{0:.0f}TeV/{1}/{2}/HtoZZ4l_MCFM_125p6_ModifiedSmoothTemplatesForCombine__GenLevelVBF_wResolution_D_Gamma_gg_r10_SysDown_ggPDF.root".format(self.sqrts,self.appendNameAlt,self.templRange)
 
@@ -338,15 +339,6 @@ class width_datacardClass:
         interfRates.setVal(rate_interf_ggzz_Shape)
         interfRates.setConstant(True)
 
-        if(DEBUG):
-            print "Shape signal rate: ",sigRate_ggH_Shape,", background rate: ",bkgRate_qqzz_Shape,", ",bkgRate_zjets_Shape," in ",low_M," - ",high_M
-            CMS_zz4l_widthMass.setRange("shapiro",100.,160.)
-            bkgRate_qqzz_shapiro = sclFactorBkg_qqzz * bkg_qqzz.createIntegral( ROOT.RooArgSet(CMS_zz4l_widthMass), ROOT.RooFit.Range("shapiro") ).getVal()
-            totalRate_ggzz_shapiro = sclFactorTotal_ggzz * ggZZpdf.createIntegral( ROOT.RooArgSet(CMS_zz4l_widthMass), ROOT.RooFit.Range("shapiro") ).getVal()
-            bkgRate_zjets_shapiro = sclFactorBkg_zjets * bkg_zjets.createIntegral( ROOT.RooArgSet(CMS_zz4l_widthMass), ROOT.RooFit.Range("shapiro") ).getVal()
-            lowmassyield = bkgRate_qqzz_shapiro + totalRate_ggzz_shapiro + bkgRate_zjets_shapiro
-            print "low mass yield: ",lowmassyield
-        
         ## --------------------------- DATASET --------------------------- ##
 
         dataFileDir = "CMSdata"
@@ -372,24 +364,9 @@ class width_datacardClass:
             
         ## --------------------------- WORKSPACE -------------------------- ##
 
-        endsInP5 = False
-        tmpMH = self.low_M
-        if ( math.fabs(math.floor(tmpMH)-self.low_M) > 0.001): endsInP5 = True
-        if (DEBUG): print "ENDS IN P5  ",endsInP5
-
-        name_Shape = ""
-        name_ShapeWS = ""
-        name_ShapeWS2 = ""
-
-        if (endsInP5): name_Shape = "{0}/hzz4l_{2}S_{3:.0f}TeV.txt".format(self.outputDir,self.low_M,self.appendName,self.sqrts)
-        else: name_Shape = "{0}/hzz4l_{2}S_{3:.0f}TeV.txt".format(self.outputDir,self.low_M,self.appendName,self.sqrts)
+        name_Shape = "{0}/hzz4l_{1}S_{2:.0f}TeV.txt".format(self.outputDir,self.appendName,self.sqrts)
         
-        if (endsInP5): name_ShapeWS = "{0}/hzz4l_{2}S_{3:.0f}TeV.input.root".format(self.outputDir,self.low_M,self.appendName,self.sqrts)
-        else: name_ShapeWS = "{0}/hzz4l_{2}S_{3:.0f}TeV.input.root".format(self.outputDir,self.low_M,self.appendName,self.sqrts)
-        
-        name_ShapeWS2 = "hzz4l_{0}S_{1:.0f}TeV.input.root".format(self.appendName,self.sqrts)
-
-        if(DEBUG): print name_Shape,"  ",name_ShapeWS2
+        name_ShapeWS = "{0}/hzz4l_{1}S_{2:.0f}TeV.input.root".format(self.outputDir,self.appendName,self.sqrts)
         
         w = ROOT.RooWorkspace("w","w")
         
@@ -430,14 +407,41 @@ class width_datacardClass:
         #bkg_qqzz_norm.SetNameTitle("bkg_qqzz_norm","bkg_qqzz_norm")
         #getattr(w,'import')(bkg_qqzz_norm, ROOT.RooFit.RecycleConflictNodes())
 
-        ##ggZZsignal_TemplatePdf.SetNameTitle("ggsignalzz","ggsignalzz")
-        ##ggZZbkg_TemplatePdf.SetNameTitle("ggbkgzz","ggbkgzz")
-        ##ggZZinterf_TemplatePdf.SetNameTitle("gginterfzz","gginterfzz")
-        ##getattr(w,'import')(ggZZsignal_TemplatePdf, ROOT.RooFit.RecycleConflictNodes())
-        ##getattr(w,'import')(ggZZbkg_TemplatePdf, ROOT.RooFit.RecycleConflictNodes())
-        ##getattr(w,'import')(ggZZinterf_TemplatePdf, ROOT.RooFit.RecycleConflictNodes())
-  
-        w.writeToFile(name_ShapeWS)
+        if self.pdfAnalysis:
+            w.writeToFile(name_ShapeWS)
+        else:
+            h_data = Sig_T_1.ProjectionX()
+            h_data.SetName("h_data")
+            h_data.SetTitle("h_data")
+            data_obs.fillHistogram(h_data,ROOT.RooArgList(CMS_zz4l_widthMass))
+            h_data.Scale(199.0/h_data.Integral())
+            output = TFile.Open(name_ShapeWS,"RECREATE")
+            h_data.SetName("data_obs")
+            h_data.SetTitle("data_obs")
+            h_data.Write()
+            h1=Sig_T_1.ProjectionX().Clone("ggH_b")
+            h2=Sig_T_2.ProjectionX().Clone("ggH_s")
+            h421=Sig_T_4.ProjectionX()#("mZZ_inter")
+            hBkg_T = bkgTempFileU.Get("T_2D_qqZZ_UnConditional").ProjectionX().Clone("bkg_qqzz")
+
+            for ix in range(h421.GetNbinsX()):
+                h421.SetBinContent(ix,h421.GetBinContent(ix)+h2.GetBinContent(ix)+h1.GetBinContent(ix))
+            h421.SetName("ggH_sbi")
+            h421.SetTitle("ggH_sbi")#1.0231, 15.1039, -1.8171, 14.3099
+            print rate_bkg_ggzz_Shape
+            print rate_signal_ggzz_Shape
+            print totalRate_ggzz
+            print h1.Integral(),"  ", h1.Integral("width"), "  ",h1.Integral("width")*self.lumi
+            print h2.Integral(),"  ", h2.Integral("width"), "  ",h2.Integral("width")*self.lumi
+            print h421.Integral(),"  ", h421.Integral("width"), "  ",h421.Integral("width")*self.lumi
+            h1.Scale(rate_bkg_ggzz_Shape/h1.Integral())
+            h2.Scale(rate_signal_ggzz_Shape/h2.Integral())
+            h421.Scale(totalRate_ggzz/h421.Integral()*self.lumi)
+            hBkg_T.Scale(76.8200/hBkg_T.Integral())
+            h1.Write()
+            h2.Write()
+            h421.Write()
+            hBkg_T.Write()
 
     def WriteDatacard(self,file,nameWS,theRates,obsEvents):
 

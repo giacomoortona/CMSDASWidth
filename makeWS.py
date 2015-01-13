@@ -104,7 +104,7 @@ class width_datacardClass:
         self.LUMI = ROOT.RooRealVar("LUMI_{0:.0f}".format(self.sqrts),"LUMI_{0:.0f}".format(self.sqrts),self.lumi)
         self.LUMI.setConstant(True)
     
-        print '2D signal shapes for Width'
+        if self.pdfAnalysis: print '2D signal shapes for Width'
         
         ## -------------------------- SIGNAL SHAPE ----------------------------------- ##
 

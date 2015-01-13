@@ -10,7 +10,7 @@ class Higgswidth(PhysicsModel):
         self.poiMap = []
         self.pois = {}
         self.verbose = False
-        self.isPdfAnalysis = True
+        self.isPdfAnalysis = False
     def setModelBuilder(self, modelBuilder):
         PhysicsModel.setModelBuilder(self,modelBuilder)
         self.modelBuilder.doModelBOnly = False
@@ -29,10 +29,11 @@ class Higgswidth(PhysicsModel):
             if po == "GGsmfixed":
                 print "Will fix CMS_zz4l_GGsm to 1 and float mu"
                 self.GGsmfixed = True
+	    if po == "pdfAnalysis": self.isPdfAnalysis = True
             
     def doParametersOfInterest(self):
         """Create POI and other parameters, and define the POI set."""
-        if self.isPdfAnalysis:
+        if not self.isPdfAnalysis:
             self.modelBuilder.doVar("CMS_widthH_kbkg[1.,0.,2.]")
             self.modelBuilder.doVar("R[1.,0.,4.]")
             self.modelBuilder.doVar("CMS_zz4l_GGsm[1.,0.,30.]")

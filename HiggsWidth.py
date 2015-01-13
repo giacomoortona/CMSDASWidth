@@ -35,7 +35,7 @@ class Higgswidth(PhysicsModel):
         """Create POI and other parameters, and define the POI set."""
         if not self.isPdfAnalysis:
             self.modelBuilder.doVar("CMS_widthH_kbkg[1.,0.,2.]")
-            self.modelBuilder.doVar("R[1.,0.,4.]")
+            self.modelBuilder.doVar("R[0.93,0.0001,10.]")
             self.modelBuilder.doVar("CMS_zz4l_GGsm[1.,0.,30.]")
 
         if self.GGsmfixed:

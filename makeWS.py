@@ -147,16 +147,18 @@ class width_datacardClass:
         rate_interf_ggzz_Shape = Sig_T_4.Integral("width")*self.lumi #*2.3
 
         ## rates per lumi for scaling
-        bkgRate_qqzz = 76.82#theInputs['qqZZ_rate']/theInputs['qqZZ_lumi'] #*1.8
-
+        if (self.channel == self.ID_2e2mu) : bkgRate_qqzz = 76.82#theInputs['qqZZ_rate']/theInputs['qqZZ_lumi'] #*1.8
+        elif (self.channel == self.ID_4e) :bkgRate_qqzz = 29.2900 
+        elif (self.channel == self.ID_4mu) : bkgRate_qqzz = 43.2100
         totalRate_ggzz_Shape = totalRate_ggzz*self.lumi
         bkgRate_qqzz_Shape = bkgRate_qqzz*self.lumi
         #bkgRate_zjets_Shape = bkgRate_zjets*self.lumi
 
-        print rate_signal_ggzz_Shape
-        print rate_bkg_ggzz_Shape
-        print rate_interf_ggzz_Shape
-        print totalRate_ggzz
+        print "ggZZ signal rate ", rate_signal_ggzz_Shape
+        print "ggZZ bkg rate ", rate_bkg_ggzz_Shape
+        print "ggZZ interf rate ", rate_interf_ggzz_Shape
+        print "qqZZ rate ", bkgRate_qqzz
+        print "ggZZ rate " totalRate_ggzz
 
         
         if Sig_T_4.Integral()<0 : #negative interference, turn it positive, the sign will be taken into account later when building the pdf

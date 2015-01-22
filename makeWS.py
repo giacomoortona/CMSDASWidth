@@ -515,6 +515,6 @@ class width_datacardClass:
 if __name__ == "__main__":
     dc =width_datacardClass()
     dc.loadIncludes()
-    cmd = 'mkdir -p provaX/'
+    cmd = 'mkdir -p cards/'
     status, output = commands.getstatusoutput(cmd)    
-    dc.makeCardsWorkspaces(220,"provaX")
+    dc.makeCardsWorkspaces(220,"cards")

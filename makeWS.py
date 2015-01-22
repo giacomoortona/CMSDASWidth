@@ -158,7 +158,7 @@ class width_datacardClass:
         print "ggZZ bkg rate ", rate_bkg_ggzz_Shape
         print "ggZZ interf rate ", rate_interf_ggzz_Shape
         print "qqZZ rate ", bkgRate_qqzz
-        print "ggZZ rate " totalRate_ggzz
+        print "ggZZ rate ", totalRate_ggzz
 
         
         if Sig_T_4.Integral()<0 : #negative interference, turn it positive, the sign will be taken into account later when building the pdf

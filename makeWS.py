@@ -48,11 +48,11 @@ class width_datacardClass:
         self.lumi =19.79
         self.inputlumi = 19.79
         self.sqrts = 8
-        self.channel = 3
+        self.channel = 1
         self.outputDir = theOutputDir
 
         self.templRange =220
-        self.pdfAnalysis = False
+        self.pdfAnalysis = True
     
         ## ---------------- SET PLOTTING STYLE ---------------- ## 
         ROOT.gStyle.SetPalette(1)
@@ -368,7 +368,7 @@ class width_datacardClass:
 
         data_obs = ROOT.RooDataSet(datasetName,datasetName,data_obs_tree,ROOT.RooArgSet(CMS_zz4l_widthMass,CMS_zz4l_widthKD))
         data_obs_red = data_obs.reduce("CMS_zz4l_widthMass > {0}".format(self.low_M))
-            
+        print "observations: ", data_obs_red.numEntries()    
         ## --------------------------- WORKSPACE -------------------------- ##
 
         name_Shape = "{0}/hzz4l_{1}S_{2:.0f}TeV.txt".format(self.outputDir,self.appendName,self.sqrts)
